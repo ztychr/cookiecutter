@@ -13,7 +13,6 @@ def boldText(string):
     print('\033[1m' + str(string) + '\033[0m')
 
 def Main():
-    # initialize the parser
     parser = argparse.ArgumentParser(description='Fetch and analyse cookies from selected websites.')
     parser.add_argument("url", help="URL to fetch cookies from", type=str)
     parser.add_argument("-v", "--verbose", help="run program in verbose mode", action="store_true")
@@ -21,7 +20,6 @@ def Main():
 
     cookie_list = []
 
-    #  get cookies from positional argument url
     try:
         if "https://" in args.url:
             c_request = requests.get(args.url)
