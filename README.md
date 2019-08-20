@@ -1,4 +1,4 @@
-# CookieCracker
+# CookieCutter
 Fetch and analyse cookies from selected websites.
 
 ## Installation
