@@ -51,7 +51,6 @@ def Main():
             cookie_list.append(redText('Cookpedia information: '))
 
             paragraphs = bs.findAll('p', limit = 6)
-
             for p in paragraphs:
                 cookie_list.append(p.getText())
 
@@ -61,7 +60,7 @@ def Main():
             print(i)
 
     else:
-        print('\033[1m' + '\n' + '- Fetching cookies and looking up discriptions...\n' + '\033[0m')
+        boldText('\n- Fetching cookies and looking up discriptions...\n')
 
         for cookie in tqdm(cookies):
             w_request = requests.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
