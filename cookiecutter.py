@@ -47,15 +47,15 @@ def Main():
             cookie_list.append(redText('path: ')  + str(cookie.path))
             cookie_list.append(redText('expires: ') + str(cookie.expires))
             cookie_list.append(redText('value: ') + str(cookie.value))
-            cookie_list.append(redText('version: ') + str(cookie.version))
-            cookie_list.append(redText('Cookpedia information: '))
+            cookie_list.append(redText('version: ') + str(cookie.version) + '\n')
 
             paragraphs = bs.findAll('p', limit = 6)
             for p in paragraphs:
-                cookie_list.append(p.getText())
+                cookie_list.append(redText('- ') + p.getText())
 
             cookie_list.append('\n')
 
+        print('\n')
         for i in cookie_list:
             print(i)
 
