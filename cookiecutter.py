@@ -66,7 +66,7 @@ def Main():
             print(i)
 
     else:
-        print(bold + 'Fetching cookies and looking up discriptions...\n' + end)
+        print(bold + '\n' + '- Fetching cookies and looking up discriptions...\n' + end)
 
         for cookie in tqdm(cookies):
             w_request = requests.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
@@ -84,4 +84,3 @@ def Main():
 
 if __name__ == "__main__":
     Main()
-
