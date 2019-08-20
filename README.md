@@ -5,7 +5,7 @@ Fetch and analyse cookies from selected websites.
 
 Clone or download repo and optionally copy CookieCracker to ~/.local/bin
 ```
-git clone https://github.com/ztychr/cookieccutter/
+git clone https://github.com/ztychr/cookiecutter/
 cd cookiecutter/ && chmod a+x cookiecutter.py
 mv cookiecutter.py ~/.local/bin/cookiecutter
 ```
