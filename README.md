@@ -29,16 +29,5 @@ If pip3 isn't installed, install with:
 sudo apt install python3-pip
 ```
 
-- From cookiecracker --help
-```
-usage: whatsmycookie.py [-h] [-v] url
 
-Fetch and analyse cookies from selected websites.
-
-positional arguments:
-  url            URL to fetch cookies from
-
-optional arguments:
-  -h, --help     show this help message and exit
-  -v, --verbose  run program in verbose mode
-```
+![example usage](https://raw.githubusercontent.com/ztychr/cookiecutter/master/cookiecutter.png)
