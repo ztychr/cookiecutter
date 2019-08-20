@@ -1,14 +1,11 @@
 #!/usr/bin/python3
+
 import sys
 import requests
 import argparse
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-cyan = '\033[96m'
-red = '\033[91m'
-bold = '\033[1m'
-end = '\033[0m'
 
 def Main():
     # initialize the parser
@@ -33,20 +30,22 @@ def Main():
     cookies = c_request.cookies
 
     if args.verbose:
-        print(bold + '\n' + '- Running program in verbose mode' + end)
-        print(bold + '\n' + '- Fetching cookies and looking up discriptions...\n' + end)
+        print('\033[1m' + '\n' + '- Running program in verbose mode' + '\033[0m')
+        print('\033[1m' + '\n' + '- Fetching cookies and looking up discriptions...\n' + '\033[0m')
 
         for cookie in tqdm(cookies):
 
             w_request = requests.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
             bs = BeautifulSoup(w_request.content, 'html.parser')
 
-            name = red + 'name: ' + end + cyan + cookie.name + end
-            domain = red + 'domain: ' + end + cyan + str(cookie.domain) + end
-            path = red + 'path: ' + end + cyan + str(cookie.path) + end
-            expire = red + 'expires: ' + end + cyan + str(cookie.expires) + end
-            value = red + 'value: ' + end + cyan + str(cookie.value) + end
-            version = red + 'version: ' + end + cyan + str(cookie.version) + end
+            name = '\033[91m' + 'name: ' + '\033[0m'  + cookie.name
+            domain = '\033[91m' + 'domain: ' + '\033[0m'  + str(cookie.domain)
+            path = '\033[91m' + 'path: ' + '\033[0m'  + str(cookie.path)
+            expire = '\033[91m' + 'expires: ' + '\033[0m'  + str(cookie.expires)
+            value = '\033[91m' + 'value: ' + '\033[0m'  + str(cookie.value)
+            version = '\033[91m' + 'version: ' + '\033[0m'  + str(cookie.version)
+            cookpedia = '\033[91m' + '\nCookpedia information: ' + '\033[0m'
+
             paragraphs = bs.findAll('p', limit = 6)
 
             cookie_list.append(name)
@@ -55,10 +54,10 @@ def Main():
             cookie_list.append(expire)
             cookie_list.append(value)
             cookie_list.append(version)
-            cookie_list.append(red + '\nCookpedia information: ' + end)
+            cookie_list.append(cookpedia)
 
             for p in paragraphs:
-                cookie_list.append(cyan + p.getText() + end)
+                cookie_list.append(p.getText())
 
             cookie_list.append('\n')
 
@@ -66,14 +65,14 @@ def Main():
             print(i)
 
     else:
-        print(bold + '\n' + '- Fetching cookies and looking up discriptions...\n' + end)
+        print('\033[1m' + '\n' + '- Fetching cookies and looking up discriptions...\n' + '\033[0m')
 
         for cookie in tqdm(cookies):
             w_request = requests.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
             bs = BeautifulSoup(w_request.content, 'html.parser')
 
-            name = red + 'Name: ' + end + cyan + cookie.name + end
-            info = red + 'Information: ' + end + cyan + str(bs.find('p').text) + end
+            name = '\033[91m' + 'Name: ' + '\033[0m'  + cookie.name + '\033[0m'
+            info = '\033[91m' + 'cookiepedia information: ' + '\033[0m'  + str(bs.find('p').text)
 
             cookie_list.append(name)
             cookie_list.append(info + '\n')
