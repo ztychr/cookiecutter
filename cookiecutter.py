@@ -4,7 +4,6 @@ import sys
 import requests
 import argparse
 from bs4 import BeautifulSoup
-from tqdm import tqdm
 
 def redText(string):
     return str(('\033[91m' + string + '\033[0m'))
@@ -17,6 +16,8 @@ def Main():
     parser.add_argument("url", help="URL to fetch cookies from", type=str)
     parser.add_argument("-v", "--verbose", help="run program in verbose mode", action="store_true")
     args = parser.parse_args()
+
+    boldText('\n- Fetching cookies and looking up discriptions...')
 
     cookie_list = []
 
@@ -33,11 +34,11 @@ def Main():
 
     if args.verbose:
         boldText('\n- Running program in verbose mode')
-        boldText('\n- Fetching cookies and looking up discriptions...\n')
 
-        for cookie in tqdm(cookies):
+        s = requests.Session()
 
-            w_request = requests.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
+        for cookie in cookies:
+            w_request = s.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
             bs = BeautifulSoup(w_request.content, 'html.parser')
 
             cookie_list.append(redText('name: ') + str(cookie.name))
@@ -58,10 +59,10 @@ def Main():
             print(i)
 
     else:
-        boldText('\n- Fetching cookies and looking up discriptions...\n')
+        s = requests.Session()
 
-        for cookie in tqdm(cookies):
-            w_request = requests.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
+        for cookie in cookies:
+            w_request = s.get('https://cookiepedia.co.uk/cookies/' + cookie.name)
             bs = BeautifulSoup(w_request.content, 'html.parser')
 
             cookie_list.append(redText('name: ') + str(cookie.name))
