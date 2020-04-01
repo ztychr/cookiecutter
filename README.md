@@ -30,4 +30,4 @@ sudo apt install python3-pip
 ```
 
 
-![example usage](https://raw.githubusercontent.com/ztychr/cookiecutter/master/cookiecutter.png)
+![example usage](https://raw.githubusercontent.com/ztychr/cookiecutter/master/cc.png)
